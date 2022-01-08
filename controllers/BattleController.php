@@ -1,13 +1,24 @@
 <?PHP
 
-require 'models/Pokemon.php';
-require 'models/Type.php';
+require_once 'models/Pokemon.php';
+require_once 'models/Type.php';
+
+/**
+     * @OA\Info(title="PokemonAPI", version="0.1")
+*/
 
 class BattleController{
 
     function __construct(){
         return true;
     }
+
+    /**
+     * @OA\Get(
+     *     path="/battle/properties",
+     *     @OA\Response(response="200", description="An example resource")
+     * )
+     */
 
     public function get_properties( $params ){
         $pokemon_name_1 = array_shift( $params );

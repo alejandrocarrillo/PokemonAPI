@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 use PokePHP\PokeApi;
 
 class Move{
@@ -14,7 +14,7 @@ class Move{
         
         $move = $api->move( $name );
         
-        if( $move == '"An error has occured."' ){
+        if( $move == '"An error has occured."' || $name == '' ){
             throw new Exception( 'No move found.' ); 
             return;
         }         

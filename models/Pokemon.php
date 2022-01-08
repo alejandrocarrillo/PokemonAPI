@@ -15,7 +15,7 @@ class Pokemon{
         $api = new PokeApi;
         $pokemon = $api->pokemon( $name );
         
-        if( $pokemon == '"An error has occured."' ){
+        if( $pokemon == '"An error has occured."' || $name == '' ){
             throw new Exception( 'No pokemon found.' ); 
             return;
         } 
@@ -33,5 +33,6 @@ class Pokemon{
             array_push($this->moves, $move['move']['name']);
         }
     }
+    
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 use PokePHP\PokeApi;
 
 class Type{
@@ -14,7 +14,7 @@ class Type{
         $api = new PokeApi;
         $type = $api->pokemonType( $name );
         
-        if( $type == '"An error has occured."' ){
+        if( $type == '"An error has occured."' || $name == '' ){
             throw new Exception( 'No type found.' ); 
             return;
         } 

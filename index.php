@@ -1,7 +1,5 @@
 <?php
 
-header('Content-type: application/json');
-
 $url = isset($_GET['url'])? $_GET['url']: null;
 $url = rtrim($url, '/');
 $url = explode('/', $url);
@@ -19,6 +17,8 @@ if( file_exists($controller_file) ){
     $controller_method = 'get_'.array_shift($url);
 
     if( method_exists($controller, $controller_method) ){
+        // header('Content-type: application/json');
+
         if( !empty( $url ) ){
             $res = $controller->{$controller_method}( $url );
             

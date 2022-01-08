@@ -1,7 +1,7 @@
 <?PHP
 
-require 'models/Pokemon.php';
-require 'models/Move.php';
+require_once 'models/Pokemon.php';
+require_once 'models/Move.php';
 
 class PokemonController{
 
@@ -9,6 +9,9 @@ class PokemonController{
         return true;
     }
 
+    /* 
+       /{name/id}/{name/id}/{language}/{limit}
+    */
     public function get_compare_moves( $params ){
         $pokemon_name_1 = array_shift( $params );
         $pokemon_name_2 = array_shift( $params );
@@ -26,14 +29,21 @@ class PokemonController{
         $limit = array_shift( $params );
 
         if( !empty( $limit ) ){
-            $common_moves = array_slice($common_moves, 0, $limit);
+            if( is_numeric( $limit ) ){
+                $common_moves = array_slice($common_moves, 0, $limit);
+            }else{
+                return array('error'=>'Invalid limit.');
+            }
         }
 
         if( $language && $language != 'en' ){
-            setlocale(LC_ALL, $language);
             foreach( $common_moves as $key => $move_name ){
                 $move = new Move($move_name);
                 $move_translated = $move->translate($language);
+
+                if( !$move_translated ){
+                    return array('error'=>'Invalid language.');
+                }
 
                 $common_moves[$key] = $move_translated;
             }
