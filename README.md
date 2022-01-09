@@ -14,7 +14,7 @@ To get started using the PokemonAPI,
 4. Once the repository is set in the corresponding folder, in the terminal go to the api folder and execute the following command to get the composer dependencies of the project
 
 ```
-php composer.phar update
+composer update
 ```
 
 5. Once that is set, open XAMPP and run the Apache server.
