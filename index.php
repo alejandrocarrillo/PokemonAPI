@@ -2,13 +2,17 @@
 
 $url = isset($_GET['url'])? $_GET['url']: null;
 $url = rtrim($url, '/');
+
+if( $url == '' ){
+    include 'api/v1/documentation/index.php';
+    return false;
+}
+
 $url = explode('/', $url);
 
-if(empty($url)) return false;
- 
+$version = array_shift($url);
 $controller_name = ucfirst(array_shift($url)) . 'Controller';
-
-$controller_file = 'controllers/' . $controller_name .'.php';
+$controller_file = 'api/'.$version.'/controllers/' . $controller_name .'.php';
 
 if( file_exists($controller_file) ){
     require $controller_file;
@@ -17,20 +21,23 @@ if( file_exists($controller_file) ){
     $controller_method = 'get_'.array_shift($url);
 
     if( method_exists($controller, $controller_method) ){
-        // header('Content-type: application/json');
-
         if( !empty( $url ) ){
             $res = $controller->{$controller_method}( $url );
-            
         }else{
             $res = array('error'=>"Parameters weren't found.");   
         }
-        
         echo json_encode($res, JSON_UNESCAPED_UNICODE);   
     }else{
         echo json_encode( array('error'=>"Call a method") , JSON_UNESCAPED_UNICODE);
     }
 }else{
-    echo json_encode( array('error'=>"URL doesn't exist.") , JSON_UNESCAPED_UNICODE);
+    if(  $version != 'docs'){
+        echo json_encode( array('error'=>"URL doesn't exist.") , JSON_UNESCAPED_UNICODE);
+    }else{
+        require("vendor/autoload.php");
+        $openapi = \OpenApi\Generator::scan(['api/v1/controllers']);
+        header('Content-Type: application/yaml');
+        echo $openapi->toYaml();
+    }
 }
 ?>

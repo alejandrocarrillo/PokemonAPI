@@ -1,0 +1,75 @@
+swagger: '2.0'
+info:
+  description: "This is an API created base of [Pokemon API](https://pokeapi.co/)." 
+  title: PokemonAPI
+  version: '1.0'
+paths:
+  '/PokemonAPI/v1/battle/properties/{pokemon1}/{pokemon2}':
+    get:
+      tags:
+        - battle
+      summary: 'Gets first pokemon battle properties.'
+      description: 'Returns the advantages the first pokemon have against the second one.'
+      operationId: d4c375daf9c229d12e4c065340565288
+      parameters:
+        -
+          name: pokemon1
+          in: path
+          description: 'Name or id of the pokemon'
+          required: true
+          schema:
+            type: string
+        -
+          name: pokemon2
+          in: path
+          description: 'Name or id of the pokemon'
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: 'Pokemon not found'
+  '/PokemonAPI/v1/pokemon/common_moves/{pokemon1}/{pokemon2}/{language}/{limit}':
+    get:
+      tags:
+        - pokemon
+      summary: 'Gets common moves between Pokemon.'
+      description: 'Returns the moves two pokemon have in common in any language and with a limit number of moves.'
+      operationId: 8879390805e644b1ba7266874ff3bf3a
+      parameters:
+        -
+          name: pokemon1
+          in: path
+          description: 'Name or id of the pokemon'
+          required: true
+          schema:
+            type: string
+        -
+          name: pokemon2
+          in: path
+          description: 'Name or id of the pokemon'
+          required: true
+          schema:
+            type: string
+        -
+          name: language
+          in: path
+          description: 'Abbreviation of a language'
+          required: false
+          schema:
+            type: string
+        -
+          name: limit
+          in: path
+          description: 'Number of moves to return'
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: 'Pokemon not found, Invalid limit, Invalid language '

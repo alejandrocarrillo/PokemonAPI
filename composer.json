@@ -1,8 +1,8 @@
 {
     "autoload": {
         "classmap": [
-            "models/",
-            "controllers"
+            "api/v1/models/",
+            "api/v1/controllers"
         ]
     },
     "require": {
