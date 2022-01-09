@@ -3,19 +3,23 @@ An API base of the [Pokemon API](https://pokeapi.co/)
 
 # Getting Started
 
-To get started using the PokemonAPI, first you need to have install [XAMPP](https://www.apachefriends.org/es/download.html) with a PHP version of 8.0.14.
+To get started using the PokemonAPI, 
 
-Make sure you have [Composer](https://getcomposer.org/download/) install in your machine.
+1. first you need to have install [XAMPP](https://www.apachefriends.org/es/download.html) with a PHP version of 8.0.14.
 
-Next clone the repository inside the htdocs file of the XAMPP folder.
+2. Make sure you have [Composer](https://getcomposer.org/download/) install in your machine.
 
-Once the repository is set in the corresponding folder, in the terminal go to the api folder and execute the following command to get the composer dependencies of the project
+3. Next clone the repository inside the htdocs file of the XAMPP folder.
+
+4. Once the repository is set in the corresponding folder, in the terminal go to the api folder and execute the following command to get the composer dependencies of the project
 
 ```
 php composer.phar update
 ```
 
-And with that you are set to starting working on the project.
+5. Once that is set, open XAMPP and run the Apache server.
+
+And with that, you are all set to starting working on the project, in a browser go to http://localhost/PokemonAPI so you can see the api.
 
 # API Documentation
 
