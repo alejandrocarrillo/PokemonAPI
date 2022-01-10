@@ -29,6 +29,8 @@ You can find API documention of the project with OpenApi at http://localhost/Pok
 
 There is a docker image of the project that you can download and execute in your local docker. You can view at [alexcg12/pokemon-api](https://hub.docker.com/r/alexcg12/pokemon-api)
 
+The url to visualize the API locally is http://localhost:9090/PokemonAPI/
+
 # Testing
 
 To start testing, open the terminal in the root of the project and execute the following command.
